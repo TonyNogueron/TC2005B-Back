@@ -1,0 +1,19 @@
+{
+  "name": "tc2005b-back",
+  "version": "1.0.0",
+  "description": "backend-for-tc2005b project",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyNogueron/TC2005B-Back.git"
+  },
+  "author": "Antonio Noguerón",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TonyNogueron/TC2005B-Back/issues"
+  },
+  "homepage": "https://github.com/TonyNogueron/TC2005B-Back#readme"
+}
