@@ -1,18 +1,16 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/jwt");
-const mysql = require("mysql2");
-const mysqlConfig = require("../helpers/mysql-config");
-const conexion = mysql.createConnection(mysqlConfig);
+const connection = require("../config/mysql-config");
 
 module.exports.getUsers = (req, res) => {
   const sql = `SELECT * FROM User`;
-
-  conexion.query(sql, (err, result, fields) => {
-    if (err) {
+  connection
+    .query(sql)
+    .then(([result]) => {
+      res.json(result);
+    })
+    .catch((err) => {
       console.log(err);
       res.status(500).json({ message: "Error on the database" });
-    } else {
-      res.json(result).status(200);
-    }
-  });
+    });
 };
