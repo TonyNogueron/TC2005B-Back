@@ -3,23 +3,23 @@ const config = require("../config/jwt");
 const connection = require("../config/mysql-config");
 
 module.exports.login = (req, res) => {
-  if (!req.body.user || !req.body.password) {
+  if (!req.body.username || !req.body.password) {
     res.status(400).json({ message: "Invalid User, user or password missing" });
     return;
   }
-  const { user, password } = req.body;
+  const { username, password } = req.body;
   let message = "Invalid User";
   let token = "";
   let idUser = 0;
-  const sql = `SELECT id FROM User WHERE username = ? AND password = SHA2(?,224)`;
+  const sql = `SELECT idUser FROM User WHERE username = ? AND password = SHA2(?,224)`;
   connection
-    .query(sql, [user, password])
+    .query(sql, [username, password])
     .then(([result]) => {
-      if (result.length > 0 && result[0].id) {
-        idUser = result[0].id;
+      if (result.length > 0 && result[0].idUser) {
+        idUser = result[0].idUser;
         const payload = {
-          id: idUser,
-          user: user,
+          idUser: idUser,
+          username: username,
         };
         token = jwt.sign(payload, config.key, { expiresIn: 7200 });
         message = "User logged in successfully";
