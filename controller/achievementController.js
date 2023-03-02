@@ -31,7 +31,6 @@ module.exports.addAchievement = (req, res) => {
 
 module.exports.getUserAchievements = (req, res) => {
   const { idUser } = req.query;
-  // sql statement thar gets all the achievements of a user with the collectionDate that is in UserAchievement table
   const sql = `SELECT Achievement.idAchievement, Achievement.name, Achievement.description, Achievement.points,
      UserAchievement.collectionDate FROM Achievement INNER JOIN UserAchievement ON Achievement.idAchievement
       = UserAchievement.Achievement_idAchievement WHERE UserAchievement.User_idUser = ?`;
